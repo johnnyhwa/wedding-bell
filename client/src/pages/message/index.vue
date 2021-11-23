@@ -4,15 +4,24 @@
 * @author huahaoze
 * @date 2021-11-22
 */
-</script>
+import MessageBox from '../../components/message-box.vue';
+</script> 
 <template>
   <view class='index-wrap'>
+    <message-box></message-box>
+    <message-box></message-box>
+    <message-box></message-box>
+    <message-box></message-box>
+    <message-box></message-box>
   </view>
 </template>
 <style lang='less'>
 .index-wrap{
-  width: 100%;
-  height: 100vh;
-  background: url(https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/bg.png) top center /auto 100% no-repeat; 
+  width: 100%; 
+  background-color: #fffbec;
+  box-sizing: border-box;
+  padding: 40px;
+  display: flex;
+  flex-flow: row wrap;
 }
 </style>

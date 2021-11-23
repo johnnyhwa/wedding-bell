@@ -1,8 +1,8 @@
 export default {
   pages: [
+    'pages/message/index',
     'pages/index/index',
     'pages/map/index',
-    'pages/message/index',
   ],
   tabBar: {
     selectedColor: '#4e72b8',
