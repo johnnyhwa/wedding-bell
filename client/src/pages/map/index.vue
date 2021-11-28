@@ -125,7 +125,7 @@ const openLocation = () => {
   }
   .map-address {
     background: url(https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/address.png)
-      top left / 100% auto no-repeat;
+      top left / 100% auto no-repeat #fafafa;
     position: relative;
   }
   .map-contact {
