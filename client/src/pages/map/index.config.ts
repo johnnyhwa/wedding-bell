@@ -1,3 +1,3 @@
 export default {
-  navigationBarTitleText: '导航'
+  navigationBarTitleText: '晤面'
 }

@@ -8,6 +8,9 @@ const config = {
     828: 1.81 / 2,
     375: 2 / 1
   },
+  alias: {
+    '@': require('path').resolve(__dirname, '../src')
+  },
   sourceRoot: 'src',
   outputRoot: 'dist',
   plugins: ['@tarojs/plugin-html'],

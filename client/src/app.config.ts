@@ -1,29 +1,31 @@
 export default {
   pages: [
-    'pages/message/index',
-    'pages/index/index',
     'pages/map/index',
+    'pages/index/index',
+    'pages/message/index',
   ],
   tabBar: {
+    borderStyle: 'white',
+    backgroundColor: '#f6f6f6',
     selectedColor: '#4e72b8',
     list: [
       {
         pagePath: 'pages/index/index',
         text: '关于',
-        iconPath: './img/tree.png',
-        selectedIconPath: './img/tree.png'
+        iconPath: './img/西蓝花.png',
+        selectedIconPath: './img/西蓝花.png'
       },
       {
         pagePath: 'pages/map/index',
-        text: '导航',
+        text: '晤面',
         iconPath: './img/map.png',
         selectedIconPath: './img/map.png'
       },
       {
         pagePath: 'pages/message/index',
-        text: '留言',
-        iconPath: './img/bird.png',
-        selectedIconPath: './img/bird.png'
+        text: '恭賀',
+        iconPath: './img/草莓.png',
+        selectedIconPath: './img/草莓.png'
       }
     ]
   },

@@ -1,3 +1,3 @@
 export default {
-  navigationBarTitleText: '留言'
+  navigationBarTitleText: '恭賀'
 }

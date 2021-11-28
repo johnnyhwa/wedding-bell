@@ -7,7 +7,7 @@
 </script>
 <template>
   <div class='message-box-wrap'>
-    <div class="message-box-header">标题标题</div>
+    <div class="message-box-header"></div>
     <div class="message-box-body"></div>
     <div class="message-box-dot"></div>
   </div>
@@ -33,7 +33,7 @@
   position: absolute;
 }
 .message-box-wrap{
-  width: 50%;
+  width: 100%;
   border: 6px solid #010200;
   background: #ffffff;
   border-radius: 10px;

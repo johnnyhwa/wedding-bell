@@ -4,11 +4,20 @@ import '@nutui/nutui-taro/dist/style.css';
 
 import './app.less'
 
-const App = createApp({
-  onShow (options) {},
-  // 入口组件不需要实现 render 方法，即使实现了也会被 taro 所覆盖
-})
+const app = createApp({})
 
-App.use(Button).use(Toast)
+app.use(Button).use(Toast)
+app.mixin({
+  onShow() {
+    if (this.weappLifecycle && this.weappLifecycle.onShow) {
+      this.weappLifecycle.onShow();
+    }
+  },
+  onReady() {
+    if (this.weappLifecycle && this.weappLifecycle.onReady) {
+      this.weappLifecycle.onReady();
+    }
+  },
+});
 
-export default App
+export default app
