@@ -4,17 +4,6 @@
  * @author huahaoze
  * @date 2021-11-22
  */
-import MessageBox from "../../components/message-box.vue";
-import Taro from '@tarojs/taro'
-import useWeappLifecycle from "@/hooks/useWeappLifecycle";
-const {  onReady, weappLifecycle } = useWeappLifecycle();
-onReady(() => {
-  Taro.nextTick(() => {
-      Taro.createSelectorQuery().select('#left')
-        .boundingClientRect()
-        .exec(res => console.log(res))
-    })
-});
 </script>
 <template>
   <view class="index-wrap">

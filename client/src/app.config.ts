@@ -1,8 +1,8 @@
 export default {
   pages: [
-    'pages/map/index',
-    'pages/index/index',
     'pages/message/index',
+    'pages/map/index',
+    'pages/index/index'
   ],
   tabBar: {
     borderStyle: 'white',
