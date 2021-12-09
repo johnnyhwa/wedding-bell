@@ -52,6 +52,7 @@ const scrollTop = ref(0);
             :content="i.text"
             :name="i.name || i.nickName"
             :time="i.time"
+            :img="i.avatarUrl"
           ></WishBox>
         </div>
         <div class="scroll-column">
@@ -61,6 +62,7 @@ const scrollTop = ref(0);
             :content="i.text"
             :name="i.name || i.nickName"
             :time="i.time"
+            :img="i.avatarUrl"
           ></WishBox>
         </div>
       </div>
@@ -89,10 +91,9 @@ const scrollTop = ref(0);
             ]"
           >
             <input
-              maxlength="4"
               class="nut-input-text"
               v-model="wishContent.text"
-              placeholder="请输入四字祝福"
+              placeholder="请输入四字祝福" 
               type="text"
             />
           </nut-form-item>
@@ -128,12 +129,13 @@ const scrollTop = ref(0);
       width: 100%;
       display: flex;
       flex-flow: row nowrap;
-      justify-content: flex-start;
+      justify-content: space-between;
       align-items: flex-start;
+      padding: 40px;
     }
     .scroll-column {
-      flex-grow: 1;
-      margin-right: 40px;
+      // flex-grow: 1;
+      width: calc(50% - 10px);
       .wish-box-wrap {
         margin-bottom: 50px;
       }
@@ -149,6 +151,6 @@ const scrollTop = ref(0);
   height: 100vh;
   background-color: @message-bg;
   box-sizing: border-box;
-  padding: 40px;
+  // padding: 40px;
 }
 </style>

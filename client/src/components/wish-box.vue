@@ -10,6 +10,7 @@ const props = withDefaults(
     content: string;
     name: string;
     time: number;
+    img: string
   }>(),
   {
     name: "陌生人",
@@ -19,25 +20,30 @@ const props = withDefaults(
 </script>
 <template>
   <div class="wish-box-wrap">
-    <div class="title">{{ getShiChen(new Date(time)) }}</div>
+    <div class="title" v-html="getShiChen(new Date(time))"></div>
     <div class="content-wrap">
       <div class="content content1">
         {{ content[0] + "\n" + content[1] }}
-        <span>{{ `THE BEST \nWISHES \nFROM \n${name}` }}</span>
+        
       </div>
-      <div class="content content2">{{ content[2] + "\n" + content[3] }}</div>
+    <div class="content content2">{{ content[2] + "\n" + content[3] }}</div>
     </div>
+    <span class="wish-author">{{ `THE BEST \nWISHES \nFROM \n${name}` }}</span>
+    <div class="img-box">
+<img :src="img" alt="">
+    </div>
+    
   </div>
 </template>
 <style lang="less">
 @border-color: #ebbe87;
 .wish-box-wrap {
   width: 100%;
-  height: 450px;
+  min-height: 50%;
   border: 5px solid @border-color;
   padding: 40px;
   color: @border-color;
-  overflow: hidden;
+  position: relative;
   .content-wrap {
     position: relative;
     width: 100%;
@@ -52,22 +58,42 @@ const props = withDefaults(
     font-weight: bold;
     padding-top: 20px;
     position: relative;
-    & > span {
-      font-size: 15px;
-      font-weight: normal;
-      text-align: left;
-      position: absolute;
-      bottom: -15px;
-      left: 5px;
-      max-width: 90px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+    
     &:nth-child(2) {
       margin-top: 60px;
       margin-right: 20px;
     }
   }
+  .img-box{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 1px solid @border-color;
+    box-sizing: border-box;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 50%;
+    transform: translateX(-50%);
+    & > img {
+      border: none;
+      display: block;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid @border-color;
+    }
+  }
+  .wish-author {
+    margin-top: 10px;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   .title {
     font-size: 33px;
     overflow: hidden;
@@ -76,6 +102,7 @@ const props = withDefaults(
     align-items: center;
     width: 100%;
     padding-left: 5px;
+    justify-content: space-between;
   }
   .wish-circle-one {
     width: 50%;

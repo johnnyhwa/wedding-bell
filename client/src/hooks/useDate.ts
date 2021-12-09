@@ -35,17 +35,17 @@ let skArr = ["一", "二", "三", "四", "五", "六", "七", "八"];
 const getShiChen = (date = new Date()) => {
   const h = date.getHours()
   const m = date.getMinutes()
-  let shichenStr =
+  let shichenStr = '<span>' +
     tzArr[parseInt(String(h / 2))] +
     "时" +
-    sdArr[parseInt(String(h / 2))] + " "
-  // 判断时刻
+    sdArr[parseInt(String(h / 2))] + "</span><span>"
+  // 判断时刻 
   if (h % 2 === 0) {
     shichenStr += skArr[parseInt(String(m / 15))];
   } else if (h % 2 === 1) {
     shichenStr += skArr[parseInt(String(m / 15)) + 4];
   }
-  return shichenStr + "刻";
+  return shichenStr + "刻" + "</span>";
 };
 
 export {getShiChen};
