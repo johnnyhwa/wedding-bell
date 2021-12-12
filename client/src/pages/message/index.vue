@@ -39,7 +39,7 @@ const scrollTop = ref(0);
     <scroll-view
       :scroll-y="true"
       class="scroll-view"
-      style="height: 90%;"
+      style="height: 100%;"
       @scrolltolower="lower"
       :scroll-into-view="toView"
       :scroll-top="scrollTop"
@@ -67,7 +67,7 @@ const scrollTop = ref(0);
         </div>
       </div>
     </scroll-view>
-    <nut-button type="primary" @click="onBtnClick">主要按钮</nut-button>
+    <nut-button class="main-button" type="primary"  @click="onBtnClick"  icon="s-follow" color="#ebbe87"  plain>我要祝福</nut-button>
 
     <nut-popup
       round
@@ -116,7 +116,7 @@ const scrollTop = ref(0);
           </nut-form-item>
         </nut-form>
 
-        <nut-button @click="onSubmit" block type="primary">送上祝福</nut-button>
+        <nut-button class="button"    shape="square" @click="onSubmit" block type="primary">送上祝福</nut-button>
       </nut-cell-group>
     </nut-popup>
   </div>
@@ -124,6 +124,14 @@ const scrollTop = ref(0);
 <style lang="less">
 @message-bg: #9a4445;
 .message-wrap {
+  position: relative;
+  .main-button{
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: @message-bg!important;
+  }
   .scroll-view {
     .scroll-content {
       width: 100%;
@@ -151,6 +159,5 @@ const scrollTop = ref(0);
   height: 100vh;
   background-color: @message-bg;
   box-sizing: border-box;
-  // padding: 40px;
 }
 </style>
