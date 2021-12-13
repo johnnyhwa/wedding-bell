@@ -1,20 +1,23 @@
 <script lang="ts" setup>
 /**
- * @description 模板容器组件
+ * @description 入口
  * @author huahaoze
  * @date 2021-11-22
  */
+import Taro from "@tarojs/taro";
+Taro.showShareMenu({
+  withShareTicket: true,
+});
 </script>
 <template>
-  <view class="index-wrap">
-<div class="circle-container" v-for="i in 15" :key="i">
-
-  <div class="circle"></div>
-  
-</div>
-
-    
-  </view>
+  <div class="index-wrap">
+    <div class="bg-wrap"></div>
+    <div class="cloud1"></div>
+    <div class="cloud2"></div>
+    <div class="circle-container" v-for="i in 15" :key="i">
+      <div class="circle"></div>
+    </div>
+  </div>
 </template>
 <style lang="scss">
 .circle-container {
@@ -23,13 +26,13 @@
   transform: translateY(-10vh);
   animation-iteration-count: infinite;
   animation-timing-function: linear;
-
+  z-index: 10;
   .circle {
     width: 100%;
     height: 100%;
     border-radius: 50%;
     mix-blend-mode: screen;
-    background: url('../../img/fly.png') top center /100% 100% no-repeat;
+    background: url("../../img/fly.png") top center / 100% 100% no-repeat;
 
     animation: fadein-frames 200ms infinite, scale-frames 2s infinite;
 
@@ -64,10 +67,9 @@
 
   $particleBaseSize: 10;
 
-  
   @for $i from 1 through $particleNum {
     &:nth-child(1) {
-      animation-delay: 0ms!important;
+      animation-delay: 0ms !important;
     }
     &:nth-child(#{$i}) {
       $circleSize: random($particleBaseSize) + 10;
@@ -109,10 +111,15 @@
 </style>
 <style lang="less">
 .index-wrap {
+  .bg-wrap {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background: url("https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/home2.png")
+      top center / auto 100% no-repeat rgba(194, 235, 253, 0.6);
+  }
   width: 100%;
   height: 100vh;
   position: relative;
-   background: url("https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/home.png")
-    top center / auto 100% no-repeat; 
 }
 </style>
