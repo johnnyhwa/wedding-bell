@@ -111,12 +111,52 @@ Taro.showShareMenu({
 </style>
 <style lang="less">
 .index-wrap {
+  background: rgba(194, 235, 253, 0.6);
   .bg-wrap {
     position: absolute;
+    z-index: 3;
     width: 100%;
     height: 100vh;
     background: url("https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/home2.png")
-      top center / auto 100% no-repeat rgba(194, 235, 253, 0.6);
+      top center / auto 100% no-repeat ;
+  }
+  @keyframes cloudmoveRight {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+  @keyframes cloudmoveLeft {
+    from {
+      transform: translateX(50%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+  .cloud1{
+    animation: cloudmoveRight 10s linear infinite; 
+    position: absolute;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    top: 80px;
+    height: 50px;
+     background: url("https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/cloud1.png")
+      top left / auto 100% no-repeat;
+  }
+  .cloud2{
+    animation: cloudmoveLeft 12s linear infinite; 
+    position: absolute;
+    right: 0;
+    top: 30px;
+    z-index: 2;
+    width: 100%;
+    height: 50px;
+     background: url("https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/cloud2.png")
+      top right / auto 100% no-repeat;
   }
   width: 100%;
   height: 100vh;

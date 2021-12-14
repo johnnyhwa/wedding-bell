@@ -37,6 +37,7 @@ const lower = () => {
 };
 const toView = () => {};
 const scrollTop = ref(0);
+
 </script>
 <template>
   <div class="message-wrap">

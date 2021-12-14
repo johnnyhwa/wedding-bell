@@ -5,13 +5,29 @@
  * @date 2021-12-13
  */
 import Wish from "./Wish.vue";
-import { ref } from "vue";
+import { onBeforeMount, ref } from "vue";
+import Taro from "@tarojs/taro";
 const show = ref(false);
+onBeforeMount(() => {
+  const db = Taro.cloud.database();
+  db.collection("jojo")
+    .where({ jojo: true })
+    .get()
+    .then(() => {
+      show.value = true;
+    })
+    .catch(() => {
+      show.value = false;
+    });
+});
 </script>
 <template>
   <div v-if="!show" class="wish-wrap">
     平安喜乐
-    <img src="https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/hug.png" alt="">
+    <img
+      src="https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/hug.png"
+      alt=""
+    />
   </div>
   <Wish v-else></Wish>
 </template>
@@ -29,7 +45,7 @@ const show = ref(false);
     position: absolute;
     height: 300px;
     width: 200px;
-    bottom:10%;
+    bottom: 10%;
     left: 50%;
     transform: translateX(-50%);
   }

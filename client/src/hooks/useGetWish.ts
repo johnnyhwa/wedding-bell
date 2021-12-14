@@ -1,5 +1,5 @@
-import { computed, ref } from "vue";
-import Taro, { useDidShow } from "@tarojs/taro";
+import { computed, onMounted, ref } from "vue";
+import Taro from "@tarojs/taro";
 interface WishList {
   avatarUrl: string;
   message: string;
@@ -30,7 +30,7 @@ export default function() {
   const wishListLimit = computed(() =>
     wishList.value.slice(0, page.value * pageSize)
   );
-  useDidShow(() => {
+  onMounted(() => {
     getWishes();
   });
   return {
