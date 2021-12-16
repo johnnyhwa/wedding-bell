@@ -10,7 +10,7 @@ Taro.showShareMenu({
 });
 </script>
 <template>
-  <div class="index-wrap">
+  <div class="cover-bg">
     <div class="bg-wrap"></div>
     <div class="cloud1"></div>
     <div class="cloud2"></div>
@@ -18,10 +18,11 @@ Taro.showShareMenu({
       <div class="circle"></div>
     </div>
   </div>
+  <div class="photo"></div>
 </template>
 <style lang="scss">
 .circle-container {
-  $particleNum: 10;
+  $particleNum: 20;
   position: absolute;
   transform: translateY(-10vh);
   animation-iteration-count: infinite;
@@ -110,8 +111,11 @@ Taro.showShareMenu({
 }
 </style>
 <style lang="less">
-.index-wrap {
+.cover-bg {
   background: rgba(194, 235, 253, 0.6);
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
   .bg-wrap {
     position: absolute;
     z-index: 3;
@@ -161,5 +165,9 @@ Taro.showShareMenu({
   width: 100%;
   height: 100vh;
   position: relative;
+}
+.photo{
+  width: 100%;
+  height: 100vh;
 }
 </style>

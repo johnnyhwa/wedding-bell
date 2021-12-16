@@ -1,5 +1,5 @@
-import { computed, onMounted, ref } from "vue";
-import Taro from "@tarojs/taro";
+import { computed, onBeforeMount, ref } from "vue";
+import Taro  from "@tarojs/taro";
 interface WishList {
   avatarUrl: string;
   message: string;
@@ -12,7 +12,9 @@ interface WishList {
 }
 export default function() {
   const wishList = ref<WishList[]>([]);
+  const loading = ref(false)
   const getWishes = () => {
+    loading.value = true
     Taro.cloud
       .callFunction({
         name: "getAllWishes",
@@ -23,6 +25,7 @@ export default function() {
             wishList.value = result.data;
           }
         }
+        loading.value = false
       });
   };
   const page = ref(1);
@@ -30,7 +33,8 @@ export default function() {
   const wishListLimit = computed(() =>
     wishList.value.slice(0, page.value * pageSize)
   );
-  onMounted(() => {
+  
+  onBeforeMount(() => {
     getWishes();
   });
   return {
@@ -38,6 +42,7 @@ export default function() {
     getWishes,
     wishListLimit,
     page,
+    loading,
     total: computed(() => wishList.value.length),
   };
 }

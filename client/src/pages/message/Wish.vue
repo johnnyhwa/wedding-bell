@@ -9,11 +9,11 @@ import useGetWish from "@/hooks/useGetWish";
 import WishBox from "@/components/wish-box.vue";
 import { computed, ref } from "vue";
 import Taro from "@tarojs/taro";
-
+import FakeWish from './fake-wish.vue'
 Taro.showShareMenu({
   withShareTicket: true,
 });
-const { getWishes, page, total, wishListLimit } = useGetWish();
+const { getWishes, page, total, wishListLimit,loading } = useGetWish();
 const {
   showPop,
   wishContent,
@@ -40,7 +40,8 @@ const scrollTop = ref(0);
 
 </script>
 <template>
-  <div class="message-wrap">
+  <FakeWish v-if="loading"></FakeWish>
+  <div v-else class="message-wrap">
     <nut-toast :msg="toastText" v-model:visible="showToast" :type="'success'" />
     <scroll-view
       :scroll-y="true"
@@ -93,7 +94,7 @@ const scrollTop = ref(0);
       class="wish-pop"
       v-model:visible="showPop"
     >
-      <nut-cell-group title="自定义右侧箭头区域">
+      <nut-cell-group>
         <nut-form :model-value="wishContent" ref="ruleForm">
           <nut-form-item
             label="贺词"
