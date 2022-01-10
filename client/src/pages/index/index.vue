@@ -5,12 +5,14 @@
  * @date 2021-11-22
  */
 import Taro from "@tarojs/taro";
+import Lyric from "@/components/lyric.vue";
 Taro.showShareMenu({
   withShareTicket: true,
 });
 </script>
 <template>
   <div class="cover-bg">
+    <Lyric class="lyric"></Lyric>
     <div class="bg-wrap"></div>
     <div class="cloud1"></div>
     <div class="cloud2"></div>
@@ -115,14 +117,14 @@ Taro.showShareMenu({
   background: rgba(194, 235, 253, 0.6);
   width: 100%;
   height: 100vh;
-  overflow-x: hidden;
+  overflow: hidden;
   .bg-wrap {
     position: absolute;
     z-index: 3;
     width: 100%;
     height: 100vh;
     background: url("https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/home2.png")
-      top center / auto 100% no-repeat ;
+      top center / auto 100% no-repeat;
   }
   @keyframes cloudmoveRight {
     from {
@@ -140,33 +142,40 @@ Taro.showShareMenu({
       transform: translateX(-100%);
     }
   }
-  .cloud1{
-    animation: cloudmoveRight 10s linear infinite; 
+  .cloud1 {
+    animation: cloudmoveRight 10s linear infinite;
     position: absolute;
     left: 0;
     z-index: 2;
     width: 100%;
     top: 80px;
     height: 50px;
-     background: url("https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/cloud1.png")
+    background: url("https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/cloud1.png")
       top left / auto 100% no-repeat;
   }
-  .cloud2{
-    animation: cloudmoveLeft 12s linear infinite; 
+  .cloud2 {
+    animation: cloudmoveLeft 12s linear infinite;
     position: absolute;
     right: 0;
     top: 30px;
     z-index: 2;
     width: 100%;
     height: 50px;
-     background: url("https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/cloud2.png")
+    background: url("https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/cloud2.png")
       top right / auto 100% no-repeat;
   }
   width: 100%;
   height: 100vh;
   position: relative;
 }
-.photo{
+.lyric {
+  position: absolute;
+  right: 5vh;
+  top: 10vh;
+  z-index: 9;
+  height: 90vh;
+}
+.photo {
   width: 100%;
   height: 100vh;
 }
