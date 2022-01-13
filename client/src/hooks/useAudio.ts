@@ -2,17 +2,31 @@ import Taro from "@tarojs/taro";
 import lyc from "@/data/lrc";
 import Lyric from "lyric-parser";
 import { ref } from "vue";
+// import _ from "lodash";
 export default function() {
   const text = ref("");
   const handleLyric = (payload): void => {
     text.value = payload.txt;
   };
+  function debounce(fn, delay) {
+    let timer;
+    return function() {
+      let context = this;
+      let args = arguments;
+      clearTimeout(timer);
+      timer = setTimeout(function() {
+        fn.apply(context, args);
+      }, delay);
+    };
+  }
   const playing = ref(false);
   const currentLyric = new Lyric(lyc, handleLyric);
-  const firstPlay = ref(true);
   const pause = () => {
     innerAudioContext.pause();
   };
+  const syncTime = debounce(() => {
+    currentLyric?.seek(innerAudioContext?.currentTime * 1000);
+  }, 5000);
 
   const play = () => {
     innerAudioContext.play();
@@ -27,10 +41,10 @@ export default function() {
   innerAudioContext.onPlay(() => {
     playing.value = true;
     currentLyric.togglePlay();
-    if (firstPlay.value) {
-      firstPlay.value = false;
-      currentLyric.seek(400);
-    }
+  });
+
+  innerAudioContext.onTimeUpdate(() => {
+    syncTime();
   });
 
   innerAudioContext.onStop(() => {
