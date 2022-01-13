@@ -9,10 +9,18 @@ import Lyric from "@/components/lyric.vue";
 Taro.showShareMenu({
   withShareTicket: true,
 });
+import useAudio from "@/hooks/useAudio";
+const { text, playing, pause, play } = useAudio();
 </script>
 <template>
   <div class="cover-bg">
-    <Lyric class="lyric"></Lyric>
+    <Lyric class="lyric" :text="text">
+     <div class="button music" :class="{rotate: playing}"></div>
+    </Lyric>
+      <div v-if="playing" class="button" @click="pause"></div>
+     
+      <div v-else class="button pause" @click="play"></div>
+
     <div class="bg-wrap"></div>
     <div class="cloud1"></div>
     <div class="cloud2"></div>
@@ -20,6 +28,7 @@ Taro.showShareMenu({
       <div class="circle"></div>
     </div>
   </div>
+  <div class="block"></div>
   <div class="photo"></div>
 </template>
 <style lang="scss">
@@ -113,16 +122,48 @@ Taro.showShareMenu({
 }
 </style>
 <style lang="less">
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+    
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .cover-bg {
   background: rgba(194, 235, 253, 0.6);
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  .button {
+    height: 6vw;
+    width: 6vw;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 99;
+
+    background: url(../../img/play.svg) top center / 100% 100% no-repeat;
+    &.music {
+      position: relative;
+      &.rotate{
+        animation: rotate 7s infinite linear ;
+      }
+      right: 4vw;
+      top: 100px;
+      background: url(../../img/music.svg) top center / 100% 100% no-repeat;
+    }
+    &.pause {
+      background: url(../../img/stop.svg) top center / 100% 100% no-repeat;
+    }
+  }
   .bg-wrap {
     position: absolute;
     z-index: 3;
     width: 100%;
     height: 100vh;
+    
     background: url("https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/home2.png")
       top center / auto 100% no-repeat;
   }
@@ -175,8 +216,15 @@ Taro.showShareMenu({
   z-index: 9;
   height: 90vh;
 }
+.block {
+  width: 100%;
+  height: 200px;
+}
 .photo {
   width: 100%;
   height: 100vh;
+
+  background: url("https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/photo.jpg")
+    top center / auto 100% no-repeat;
 }
 </style>

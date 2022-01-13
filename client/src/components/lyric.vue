@@ -5,14 +5,20 @@
  * @date 2022-01-10
  */
 import { computed } from "vue";
-import useAudio from "@/hooks/useAudio";
-const { text } = useAudio();
-const textArr = computed(() => text.value.split(" "));
+
+const props = withDefaults(
+  defineProps<{
+    text: string;
+  }>(),
+  {}
+);
+const textArr = computed(() => props.text.split(" "));
 </script>
 <template>
   <transition name="fade" mode="out-in" appear>
     <div v-if="text" class="lyric-play" :key="text">
       {{ textArr.join("\n") }}
+      <slot></slot>
     </div>
   </transition>
 </template>
@@ -31,7 +37,6 @@ const textArr = computed(() => text.value.split(" "));
   to {
     opacity: 0.6;
     transform: translateX(0);
-
   }
 }
 .fade-enter-from {
@@ -41,14 +46,17 @@ const textArr = computed(() => text.value.split(" "));
   opacity: 0;
 }
 .lyric-play {
-  animation: fade .8s ease-in-out;
+  animation: fade 0.8s ease-in-out;
   font-size: 66px;
   font-weight: bold;
   writing-mode: vertical-rl;
   white-space: pre-wrap;
   text-align: start;
   letter-spacing: 5px;
-  color: #FFFFFF;
+  color: #ffffff;
   opacity: 0.6;
+  text-indent: -2em;
+  margin-top: 2em;
+  position:relative;
 }
 </style>
