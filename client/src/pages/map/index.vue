@@ -97,10 +97,19 @@ const openLocation = () => {
       <div class="map-address-bg"></div>
       <div class="map-contact">
         <div class="contact-top">
-          <img @click="callPhone('i')" class="p-img" :src="irene" alt="" />
-          <img @click="callPhone('j')" class="p-img" :src="johnny" alt="" />
+          <img
+            @click="callPhone('i')"
+            class="p-img"
+            src="https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/irene.png"
+            alt=""
+          />
+          <img
+            @click="callPhone('j')"
+            class="p-img"
+            src="https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/johnny.png"
+            alt=""
+          />
         </div>
-        <img :src="phone" alt="" />
       </div>
     </div>
   </div>
@@ -120,8 +129,6 @@ const openLocation = () => {
     width: 400px;
     top: 120px;
     right: 10px;
-    /*  background: url(https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/map-bg.png)
-      top center / 100% auto no-repeat; */
   }
   .map-address {
     background: url(https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/address.png)

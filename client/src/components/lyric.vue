@@ -15,12 +15,13 @@ const props = withDefaults(
 const textArr = computed(() => props.text.split(" "));
 </script>
 <template>
-  <transition name="fade" mode="out-in" appear>
-    <div v-if="text" class="lyric-play" :key="text">
-      {{ textArr.join("\n") }}
-      <slot></slot>
-    </div>
-  </transition>
+    <transition name="fade" mode="out-in" appear>
+      <div v-if="text" class="lyric-play" :key="text">
+        {{ textArr.join("\n") }}
+        <slot></slot>
+      </div>
+    </transition>
+    
 </template>
 <style lang="less">
 .fade-enter-active {
@@ -45,6 +46,9 @@ const textArr = computed(() => props.text.split(" "));
 .fade-leave-to {
   opacity: 0;
 }
+.lyric-wrap{
+  position: relative;
+}
 .lyric-play {
   animation: fade 0.8s ease-in-out;
   font-size: 66px;
@@ -57,6 +61,6 @@ const textArr = computed(() => props.text.split(" "));
   opacity: 0.6;
   text-indent: -2em;
   margin-top: 2em;
-  position:relative;
+  position: relative;
 }
 </style>

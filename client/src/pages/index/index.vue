@@ -4,23 +4,29 @@
  * @author huahaoze
  * @date 2021-11-22
  */
-import Taro from "@tarojs/taro";
+import Taro, { onAppHide, onAppShow } from "@tarojs/taro";
 import Lyric from "@/components/lyric.vue";
+import useAudio from "@/hooks/useAudio";
+
 Taro.showShareMenu({
   withShareTicket: true,
 });
-import useAudio from "@/hooks/useAudio";
 const { text, playing, pause, play } = useAudio();
+
+onAppHide(() => {
+  pause()
+})
+onAppShow(() => {
+  play()
+})
 </script>
 <template>
   <div class="cover-bg">
     <Lyric class="lyric" :text="text">
      <div class="button music" :class="{rotate: playing}"></div>
-    </Lyric>
-      <div v-if="playing" class="button" @click="pause"></div>
-     
+     <div v-if="playing" class="button" @click="pause"></div>
       <div v-else class="button pause" @click="play"></div>
-
+    </Lyric>
     <div class="bg-wrap"></div>
     <div class="cloud1"></div>
     <div class="cloud2"></div>
@@ -140,8 +146,9 @@ const { text, playing, pause, play } = useAudio();
     height: 6vw;
     width: 6vw;
     position: absolute;
+    font-size: 66px;
     right: 10px;
-    top: 10px;
+    top: -3em;
     z-index: 99;
 
     background: url(../../img/play.svg) top center / 100% 100% no-repeat;
@@ -164,7 +171,7 @@ const { text, playing, pause, play } = useAudio();
     width: 100%;
     height: 100vh;
     
-    background: url("https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/home2.png")
+    background: url("https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/bg1.png")
       top center / auto 100% no-repeat;
   }
   @keyframes cloudmoveRight {
@@ -218,13 +225,15 @@ const { text, playing, pause, play } = useAudio();
 }
 .block {
   width: 100%;
-  height: 200px;
+  height: 100vh;
+  background: url("https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/bg2.png")
+    top center / auto 100% no-repeat;
 }
 .photo {
   width: 100%;
   height: 100vh;
 
-  background: url("https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/photo.jpg")
+  background: url("https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/bg3.png")
     top center / auto 100% no-repeat;
 }
 </style>
