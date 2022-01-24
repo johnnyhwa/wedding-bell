@@ -31,6 +31,7 @@ export default function() {
     if (stoped.value) {
       stoped.value = false;
       currentLyric = new Lyric(lyc, handleLyric);
+      innerAudioContext.seek(0)
     }
     
     currentLyric.togglePlay();
@@ -47,6 +48,7 @@ export default function() {
     currentLyric.stop();
     stoped.value = true;
     currentLyric = null
+    
   })
 
   innerAudioContext.onPause(() => {
