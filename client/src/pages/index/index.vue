@@ -4,27 +4,21 @@
  * @author huahaoze
  * @date 2021-11-22
  */
-import Taro, { onAppHide, onAppShow } from "@tarojs/taro";
+import Taro from "@tarojs/taro";
 import Lyric from "@/components/lyric.vue";
 import useAudio from "@/hooks/useAudio";
-
+ 
 Taro.showShareMenu({
   withShareTicket: true,
 });
 const { text, playing, pause, play } = useAudio();
 
-onAppHide(() => {
-  pause()
-})
-onAppShow(() => {
-  play()
-})
 </script>
 <template>
   <div class="cover-bg">
     <Lyric class="lyric" :text="text">
-     <div class="button music" :class="{rotate: playing}"></div>
-     <div v-if="playing" class="button" @click="pause"></div>
+      <div class="button music" :class="{ rotate: playing }"></div>
+      <div v-if="playing" class="button" @click="pause"></div>
       <div v-else class="button pause" @click="play"></div>
     </Lyric>
     <div class="bg-wrap"></div>
@@ -131,7 +125,6 @@ onAppShow(() => {
 @keyframes rotate {
   from {
     transform: rotate(0);
-    
   }
   to {
     transform: rotate(360deg);
@@ -154,8 +147,8 @@ onAppShow(() => {
     background: url(../../img/play.svg) top center / 100% 100% no-repeat;
     &.music {
       position: relative;
-      &.rotate{
-        animation: rotate 7s infinite linear ;
+      &.rotate {
+        animation: rotate 7s infinite linear;
       }
       right: 4vw;
       top: 100px;
@@ -170,7 +163,7 @@ onAppShow(() => {
     z-index: 3;
     width: 100%;
     height: 100vh;
-    
+
     background: url("https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/bg1.png")
       top center / auto 100% no-repeat;
   }
