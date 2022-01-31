@@ -30,6 +30,9 @@ export default function(refresh: Function) {
           })
           .then(() => {
             showToast.value = true;
+            setTimeout(() => {
+              showToast.value = false;
+            }, 3000)
             showPop.value = false;
             resetContent();
             refresh();
@@ -37,6 +40,9 @@ export default function(refresh: Function) {
           .catch(() => {
             toastText.value = "哎呀服务器出小差了";
             showToast.value = true;
+            setTimeout(() => {
+              showToast.value = false;
+            }, 3000)
             resetContent();
           });
       }
