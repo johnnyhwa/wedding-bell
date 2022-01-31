@@ -7,12 +7,11 @@
 import Taro from "@tarojs/taro";
 import Lyric from "@/components/lyric.vue";
 import useAudio from "@/hooks/useAudio";
- 
+
 Taro.showShareMenu({
   withShareTicket: true,
 });
 const { text, playing, pause, play } = useAudio();
-
 </script>
 <template>
   <div class="cover-bg">
@@ -29,7 +28,8 @@ const { text, playing, pause, play } = useAudio();
     </div>
   </div>
   <div class="block"></div>
-  <div class="photo"></div>
+  <div class="photo1"></div>
+  <div class="photo2"></div>
 </template>
 <style lang="scss">
 .circle-container {
@@ -222,11 +222,18 @@ const { text, playing, pause, play } = useAudio();
   background: url("https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/bg2.png")
     top center / auto 100% no-repeat;
 }
-.photo {
+.photo1 {
   width: 100%;
   height: 100vh;
 
   background: url("https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/bg3.png")
+    top center / auto 100% no-repeat;
+}
+.photo2 {
+  width: 100%;
+  height: 100vh;
+
+  background: url("https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/bg4.png")
     top center / auto 100% no-repeat;
 }
 </style>
