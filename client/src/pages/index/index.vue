@@ -7,11 +7,39 @@
 import Taro from "@tarojs/taro";
 import Lyric from "@/components/lyric.vue";
 import useAudio from "@/hooks/useAudio";
-
+import { onBeforeMount, ref } from "vue";
 Taro.showShareMenu({
   withShareTicket: true,
 });
 const { text, playing, pause, play } = useAudio();
+const photo1 = ref<string[]>([]);
+const photo2 = ref<string[]>([]);
+onBeforeMount(() => {
+  const db = Taro.cloud.database();
+  db.collection("imgs")
+    .get()
+    .then((res) => {
+      if (res.data.length > 0) {
+        photo1.value = res.data[0].photo1;
+        photo2.value = res.data[0].photo2;
+      }
+    });
+});
+const onPhotoClick = (photo: number) => {
+  if (photo1.value.length > 0 && photo2.value.length > 0) {
+    if (photo === 1) {
+      Taro.previewImage({
+        current: photo1.value.length > 0 ? photo1.value[0] : "",
+        urls: photo1.value,
+      });
+    } else {
+      Taro.previewImage({
+        current: photo2.value.length > 0 ? photo2.value[0] : "",
+        urls: photo2.value,
+      });
+    }
+  }
+};
 </script>
 <template>
   <div class="cover-bg">
@@ -27,9 +55,9 @@ const { text, playing, pause, play } = useAudio();
       <div class="circle"></div>
     </div>
   </div>
-  <div class="block"></div>
+  <div class="photo" @click="onPhotoClick(1)"></div>
   <div class="photo1"></div>
-  <div class="photo2"></div>
+  <div class="photo2" @click="onPhotoClick(2)"></div>
 </template>
 <style lang="scss">
 .circle-container {
@@ -216,7 +244,7 @@ const { text, playing, pause, play } = useAudio();
   z-index: 9;
   height: 90vh;
 }
-.block {
+.photo {
   width: 100%;
   height: 100vh;
   background: url("https://wedding-1302676061.cos.ap-shanghai.myqcloud.com/bg2.png")
